@@ -167,12 +167,15 @@ const Grainient: React.FC<GrainientProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    // Mobile: shader fullscreen é caro — DPR 1 e ~30fps. Desktop: DPR<=2, 60fps.
     const renderer = new Renderer({
       webgl: 2,
       alpha: true,
       antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
+      dpr: isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2)
     });
+    const minFrameMs = isMobile ? 1000 / 30 : 0;
 
     const gl = renderer.gl;
     const canvas = gl.canvas as HTMLCanvasElement;
@@ -234,11 +237,14 @@ const Grainient: React.FC<GrainientProps> = ({
     let isVisible = true;
     let isPageVisible = !document.hidden;
     const t0 = performance.now();
+    let lastFrame = 0;
 
     const loop = (t: number) => {
+      raf = requestAnimationFrame(loop);
+      if (minFrameMs && t - lastFrame < minFrameMs) return;
+      lastFrame = t;
       (program.uniforms.iTime as { value: number }).value = (t - t0) * 0.001;
       renderer.render({ scene: mesh });
-      raf = requestAnimationFrame(loop);
     };
 
     const tryStart = () => {

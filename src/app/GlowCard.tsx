@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import BorderGlow from './BorderGlow';
 
 interface GlowCardProps {
@@ -8,31 +8,33 @@ interface GlowCardProps {
   className?: string;
 }
 
-// Envolve BorderGlow. No mobile, dispara a animação ao entrar na viewport.
+// Desktop: BorderGlow animado. Mobile: card estático leve (sem rAF/blend) p/ performance.
 export default function GlowCard({ children, className = '' }: GlowCardProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [animated, setAnimated] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (!isMobile) return;
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimated(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.4 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    setMounted(true);
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
 
+  // Antes do mount e no mobile: card estático (zero animação, zero blend).
+  if (!mounted || isMobile) {
+    return (
+      <div
+        className={`h-full rounded-[28px] border border-white/15 bg-[#171211] ${className}`.trim()}
+      >
+        {children}
+      </div>
+    );
+  }
+
   return (
-    <div ref={ref} className={className}>
+    <div className={className}>
       <BorderGlow
         edgeSensitivity={30}
         glowColor="24 87 55"
@@ -41,7 +43,7 @@ export default function GlowCard({ children, className = '' }: GlowCardProps) {
         glowRadius={40}
         glowIntensity={1}
         coneSpread={25}
-        animated={animated}
+        animated={false}
         colors={['#F07928', '#F07928', '#F07928']}
         className="h-full"
       >
