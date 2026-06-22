@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# 🎬 Carda Movie
 
-First, run the development server:
+### Seu cardápio que dá água na boca antes do pedido
+
+Landing page do **Carda Movie** — o cardápio digital em vídeo. Cada prato ganha um vídeo curto, o cliente escaneia um QR Code na mesa e assiste ao prato ganhar vida antes de pedir. Sem app, sem comissão, sem gráfica.
+
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-149ECA?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38BDF8?logo=tailwindcss)](https://tailwindcss.com/)
+
+</div>
+
+---
+
+## ✨ Destaques
+
+- **Hero 3D animado** — mockup de celular flutuante com vídeo de prato em perspectiva.
+- **Fundo generativo** — `Grainient` (shader OGL) com ruído e warp animados em tempo real.
+- **Cards com tilt 3D** — efeito de inclinação no hover (desktop), desligado automaticamente no mobile pra manter o texto nítido.
+- **Stepper auto-avançável** — "Monte, publique, venda" em 3 passos com transição de slide.
+- **FAQ animado** — expand/collapse com altura fluida via Motion.
+- **CTA pulsante** — botão com glow laranja chamando a ação.
+- **100% responsivo** — ajustes finos de layout e padding pensados pro mobile.
+
+## 🧱 Stack
+
+| Camada | Tecnologia |
+|--------|-----------|
+| Framework | [Next.js 16](https://nextjs.org/) (App Router, Turbopack) |
+| UI | [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) |
+| Estilo | [Tailwind CSS 4](https://tailwindcss.com/) |
+| Animação | [Motion](https://motion.dev/) · [GSAP](https://gsap.com/) · [Lenis](https://lenis.darkroom.engineering/) |
+| Gráficos | [OGL](https://github.com/oframe/ogl) (WebGL) |
+
+## 🚀 Começando
+
+Requisitos: **Node.js 18+** e npm.
 
 ```bash
+# instala dependências
+npm install
+
+# sobe o servidor de desenvolvimento (porta padrão 3000)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# ou em outra porta
+npx next dev -p 3005
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📜 Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Comando | O que faz |
+|---------|-----------|
+| `npm run dev` | Servidor de desenvolvimento com Turbopack |
+| `npm run build` | Build de produção |
+| `npm run start` | Sobe o build de produção |
+| `npm run lint` | Roda o ESLint |
 
-## Learn More
+## 📁 Estrutura
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/app/
+├── page.tsx           # Landing page (hero, recursos, stepper, FAQ, CTA)
+├── layout.tsx         # Layout raiz + metadados
+├── globals.css        # Estilos globais e keyframes (float, pulse-cta…)
+├── Grainient.tsx      # Fundo generativo WebGL
+├── TiltCard.tsx       # Card com tilt 3D (desktop only)
+├── GlowCard.tsx       # Card com borda/glow
+├── Stepper.tsx        # Passo a passo animado
+├── FaqItem.tsx        # Item de FAQ expansível
+├── ScrollFloat.tsx    # Texto que sobe no scroll
+├── SplitText.tsx      # Animação caractere a caractere
+└── MobileNav.tsx      # Navegação mobile
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Otimizado pra [Vercel](https://vercel.com/). Conecte o repositório e o deploy é automático a cada push.
 
-## Deploy on Vercel
+```bash
+# ou via CLI
+vercel deploy        # preview
+vercel deploy --prod # produção
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<div align="center">
+
+Feito com 🧡 para restaurantes que querem vender mais.
+
+**Carda Movie** — vídeo, atualização na hora e zero gráfica.
+
+</div>
