@@ -35,6 +35,32 @@ const iconBase = {
   strokeLinejoin: "round" as const,
 };
 
+// Ícones do footer (SVG inline)
+type IcProps = { size?: number; className?: string };
+const svgBase = (size: number, className: string) => ({
+  width: size, height: size, viewBox: "0 0 24 24", fill: "none",
+  stroke: "currentColor", strokeWidth: 1.8,
+  strokeLinecap: "round" as const, strokeLinejoin: "round" as const, className,
+});
+const IcInstagram = ({ size = 18, className = "" }: IcProps) => (
+  <svg {...svgBase(size, className)}><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+);
+const IcFacebook = ({ size = 18, className = "" }: IcProps) => (
+  <svg {...svgBase(size, className)}><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+);
+const IcWhatsApp = ({ size = 18, className = "" }: IcProps) => (
+  <svg {...svgBase(size, className)}><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 20l1-5.5a8.5 8.5 0 0 1 16-3z" /></svg>
+);
+const IcPhone = ({ size = 16, className = "" }: IcProps) => (
+  <svg {...svgBase(size, className)}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+);
+const IcMail = ({ size = 16, className = "" }: IcProps) => (
+  <svg {...svgBase(size, className)}><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M22 7l-10 6L2 7" /></svg>
+);
+const IcArrowUp = ({ size = 14, className = "" }: IcProps) => (
+  <svg {...svgBase(size, className)}><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+);
+
 const features = [
   {
     title: "Cardápio em vídeo",
@@ -279,7 +305,7 @@ export default function Home() {
               className="relative block w-[78%] max-w-sm scale-125 lg:max-w-md lg:scale-[1.3]"
             />
             {/* balão de fala */}
-            <div className="absolute left-2 top-4 rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-8 lg:left-0">
+            <div className="absolute left-[11px] top-[11px] rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[35px] lg:left-[3px]">
               Bora vender mais? 🔥
             </div>
           </div>
@@ -500,7 +526,7 @@ export default function Home() {
             alt="Chef CardaMovie"
             width={1122}
             height={1402}
-            className="absolute bottom-0 right-full hidden w-[240px] translate-x-[91px] lg:block xl:w-[280px] xl:translate-x-[107px]"
+            className="absolute bottom-0 right-full hidden w-[255px] translate-x-[91px] lg:block xl:w-[295px] xl:translate-x-[107px]"
           />
         <form className="relative z-[1] w-full max-w-xl rounded-3xl border border-white/10 bg-white/[.03] p-6 shadow-xl backdrop-blur sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2">
@@ -587,16 +613,107 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-white/50 sm:flex-row">
-          <Image
-            src="/images/logo-principal.png"
-            alt="CardaMovie"
-            width={2172}
-            height={724}
-            className="h-16 w-auto sm:h-20"
-          />
-          <span>© {new Date().getFullYear()} CardaMovie. Todos os direitos reservados.</span>
+      <footer className="relative border-t border-white/10 bg-[#161616]">
+        <div className="mx-auto w-full max-w-6xl px-6 py-14">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
+            {/* Marca */}
+            <div>
+              <Image
+                src="/images/logo-principal.png"
+                alt="CardaMovie"
+                width={2172}
+                height={724}
+                className="h-14 w-auto"
+              />
+              <p className="mt-4 max-w-xs text-sm leading-6 text-white/50">
+                O primeiro cardápio digital em vídeo do Brasil. Mostre seus pratos do jeito
+                certo e venda mais, sem app e sem comissão.
+              </p>
+              <div className="mt-5 flex gap-3">
+                <a
+                  href="https://www.instagram.com/cardamovie"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-accent hover:text-accent"
+                >
+                  <IcInstagram size={18} />
+                </a>
+                <a
+                  href="https://www.facebook.com/cardamovie"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-accent hover:text-accent"
+                >
+                  <IcFacebook size={18} />
+                </a>
+                <a
+                  href="https://wa.me/5562981766658"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-accent hover:text-accent"
+                >
+                  <IcWhatsApp size={18} />
+                </a>
+              </div>
+            </div>
+
+            {/* Navegação */}
+            <div>
+              <h4 className="text-sm font-bold tracking-wide text-white">Navegação</h4>
+              <ul className="mt-4 flex flex-col gap-2.5 text-sm text-white/55">
+                <li><a href="#chef" className="transition-colors hover:text-white">Chef</a></li>
+                <li><a href="#recursos" className="transition-colors hover:text-white">Recursos</a></li>
+                <li><a href="#comparativo" className="transition-colors hover:text-white">Comparativo</a></li>
+                <li><a href="#cardapios" className="transition-colors hover:text-white">Cardápios</a></li>
+                <li><a href="#faq" className="transition-colors hover:text-white">FAQ</a></li>
+              </ul>
+            </div>
+
+            {/* Institucional */}
+            <div>
+              <h4 className="text-sm font-bold tracking-wide text-white">Institucional</h4>
+              <ul className="mt-4 flex flex-col gap-2.5 text-sm text-white/55">
+                <li><a href="#" className="transition-colors hover:text-white">Sobre nós</a></li>
+                <li><a href="#" className="transition-colors hover:text-white">Política de privacidade</a></li>
+                <li><a href="#" className="transition-colors hover:text-white">Termos de uso</a></li>
+                <li><a href="#faq" className="transition-colors hover:text-white">Central de ajuda</a></li>
+              </ul>
+            </div>
+
+            {/* Contato */}
+            <div>
+              <h4 className="text-sm font-bold tracking-wide text-white">Fale com a gente</h4>
+              <ul className="mt-4 flex flex-col gap-3 text-sm text-white/55">
+                <li>
+                  <a href="https://wa.me/5562981766658" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 transition-colors hover:text-white">
+                    <IcPhone size={16} className="text-accent" /> (62) 98176-6658
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:contato@cardamovie.com" className="flex items-center gap-2.5 transition-colors hover:text-white">
+                    <IcMail size={16} className="text-accent" /> contato@cardamovie.com
+                  </a>
+                </li>
+              </ul>
+              <a
+                href="#contato"
+                className="mt-5 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Quero meu cardápio
+              </a>
+            </div>
+          </div>
+
+          {/* Barra inferior */}
+          <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row">
+            <span>© {new Date().getFullYear()} CardaMovie. Todos os direitos reservados.</span>
+            <a href="#" className="flex items-center gap-1.5 transition-colors hover:text-white">
+              Voltar ao topo <IcArrowUp size={14} />
+            </a>
+          </div>
         </div>
       </footer>
 
