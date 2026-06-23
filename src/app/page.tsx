@@ -150,9 +150,20 @@ export default function Home() {
 
       {/* Header */}
       <header className="absolute inset-x-0 top-0 z-20 bg-transparent">
-        <nav className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
+        <nav className="mr-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4 lg:pl-12">
+          {/* logo à esquerda */}
+          <a href="#" className="shrink-0">
+            <Image
+              src="/images/logo-principal.png"
+              alt="CardaMovie"
+              width={2172}
+              height={724}
+              priority
+              className="h-12 w-auto sm:h-16"
+            />
+          </a>
+
           <div className="flex items-center gap-8">
-            <MobileNav />
             {/* links desktop */}
             <div className="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
               <a href="#recursos" className="transition-colors hover:text-white">Recursos</a>
@@ -165,19 +176,8 @@ export default function Home() {
             >
               Começar
             </a>
+            <MobileNav />
           </div>
-
-          {/* logo à direita */}
-          <a href="#" className="ml-auto shrink-0">
-            <Image
-              src="/images/logo-principal.png"
-              alt="CardaMovie"
-              width={2172}
-              height={724}
-              priority
-              className="h-12 w-auto sm:h-16"
-            />
-          </a>
         </nav>
       </header>
 
@@ -261,9 +261,9 @@ export default function Home() {
 
       {/* Chef mascote */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto grid w-full max-w-6xl items-end gap-10 px-6 pt-20 lg:grid-cols-2 lg:pt-28">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-2 lg:py-28">
           {/* Mascote */}
-          <div className="relative order-1 flex justify-center self-end lg:order-none">
+          <div className="relative order-1 flex justify-center lg:order-none">
             {/* glow atrás */}
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/30 blur-[90px]" />
             <Image
@@ -274,7 +274,7 @@ export default function Home() {
               className="relative block w-[78%] max-w-sm lg:max-w-md"
             />
             {/* balão de fala */}
-            <div className="absolute left-2 top-4 -rotate-3 rounded-2xl rounded-bl-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-8 lg:left-0">
+            <div className="absolute left-2 top-4 rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-8 lg:left-0">
               Bora vender mais? 🔥
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function Home() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-28 bg-gradient-to-b from-transparent to-[#121212]" />
 
           {/* Texto */}
-          <div className="flex flex-col items-start self-end pb-12 text-left lg:pb-24">
+          <div className="flex flex-col items-start self-center text-left">
             <span className="mb-5 rounded-full border border-accent/40 px-4 py-1 text-sm font-medium text-accent">
               Conheça nosso chef
             </span>
@@ -319,7 +319,7 @@ export default function Home() {
         <div className="relative z-[1] mx-auto w-full max-w-6xl">
         <div className="mb-14 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Tudo que o restaurante precisa
+            Tudo que o seu restaurante precisa
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/60">
             Pensado para vender mais sem depender de marketplaces.
@@ -477,39 +477,118 @@ export default function Home() {
       </section>
 
       {/* Contato / CTA */}
-      <section id="contato" className="mx-auto w-full max-w-3xl px-6 py-24 text-center">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Pronto para digitalizar seu cardápio?
-        </h2>
-        <p className="mx-auto mt-4 max-w-lg text-white/70">
-          Deixe seu contato e nossa equipe configura sua conta.
-        </p>
-        <form className="mx-auto mt-10 flex max-w-md flex-col gap-4">
-          <input
-            type="text"
-            placeholder="Nome do restaurante"
-            className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-white placeholder-white/40 outline-none focus:border-accent"
+      <section id="contato" className="mx-auto w-full max-w-3xl px-6 py-24">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Pronto para digitalizar seu cardápio?
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-white/70">
+            Preencha os dados abaixo. Nossa equipe entra em contato e configura sua conta.
+          </p>
+        </div>
+
+        <div className="mt-10 flex items-end justify-center">
+          {/* chef encostado no formulário */}
+          <Image
+            src="/images/chef 3.png"
+            alt="Chef CardaMovie"
+            width={1122}
+            height={1402}
+            className="-mr-6 hidden w-[230px] shrink-0 self-end lg:block xl:w-[270px]"
           />
-          <input
-            type="email"
-            placeholder="Seu e-mail"
-            className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-white placeholder-white/40 outline-none focus:border-accent"
-          />
+        <form className="relative z-[1] w-full max-w-xl rounded-3xl border border-white/10 bg-white/[.03] p-6 shadow-xl backdrop-blur sm:p-8">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="nome" className="text-xs font-medium text-white/60">Seu nome *</label>
+              <input
+                id="nome"
+                type="text"
+                required
+                placeholder="Ex: João Silva"
+                className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/30 outline-none transition-colors focus:border-accent"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="restaurante" className="text-xs font-medium text-white/60">Nome do restaurante *</label>
+              <input
+                id="restaurante"
+                type="text"
+                required
+                placeholder="Ex: Cantina Valentina"
+                className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/30 outline-none transition-colors focus:border-accent"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="whatsapp" className="text-xs font-medium text-white/60">WhatsApp *</label>
+              <input
+                id="whatsapp"
+                type="tel"
+                required
+                placeholder="(62) 9 9999-9999"
+                className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/30 outline-none transition-colors focus:border-accent"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="email" className="text-xs font-medium text-white/60">E-mail *</label>
+              <input
+                id="email"
+                type="email"
+                required
+                placeholder="voce@restaurante.com"
+                className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/30 outline-none transition-colors focus:border-accent"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="tipo" className="text-xs font-medium text-white/60">Tipo de estabelecimento</label>
+              <select
+                id="tipo"
+                defaultValue=""
+                className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none transition-colors focus:border-accent"
+              >
+                <option value="" disabled className="bg-[#1c1c1c]">Selecione</option>
+                <option className="bg-[#1c1c1c]">Restaurante</option>
+                <option className="bg-[#1c1c1c]">Pizzaria</option>
+                <option className="bg-[#1c1c1c]">Hamburgueria</option>
+                <option className="bg-[#1c1c1c]">Cafeteria / Padaria</option>
+                <option className="bg-[#1c1c1c]">Bar / Pub</option>
+                <option className="bg-[#1c1c1c]">Outro</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="pratos" className="text-xs font-medium text-white/60">Pratos no cardápio (aprox.)</label>
+              <input
+                id="pratos"
+                type="number"
+                min={1}
+                placeholder="Ex: 40"
+                className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/30 outline-none transition-colors focus:border-accent"
+              />
+            </div>
+          </div>
+
           <button
             type="submit"
-            className="animate-pulse-cta rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90"
+            className="animate-pulse-cta mt-6 w-full rounded-xl bg-accent px-8 py-3.5 text-base font-semibold text-white transition-opacity hover:opacity-90"
           >
             Quero meu cardápio
           </button>
+          <p className="mt-3 text-center text-xs text-white/40">
+            Sem compromisso. Seus dados ficam seguros e não são compartilhados.
+          </p>
         </form>
+        </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-white/10">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-white/50 sm:flex-row">
-          <span className="font-heading text-white">
-            CARDA<span className="text-accent">MOVIE</span>
-          </span>
+          <Image
+            src="/images/logo-principal.png"
+            alt="CardaMovie"
+            width={2172}
+            height={724}
+            className="h-10 w-auto"
+          />
           <span>© {new Date().getFullYear()} CardaMovie. Todos os direitos reservados.</span>
         </div>
       </footer>
