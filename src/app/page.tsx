@@ -233,7 +233,7 @@ export default function Home() {
         {/* fade escuro no topo (atrás do header) */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent" />
 
-        <div className="relative z-[1] mr-auto flex w-full max-w-6xl flex-col items-start gap-8 px-6 pb-20 pt-28 text-left sm:py-32 lg:pl-12">
+        <div className="relative z-[1] mr-auto flex w-full max-w-6xl flex-col items-center gap-8 px-6 pb-20 pt-28 text-center sm:items-start sm:py-32 sm:text-left lg:pl-12">
           {/* logo grande (somente mobile) */}
           <Image
             src="/images/logo-principal.png"
@@ -241,12 +241,12 @@ export default function Home() {
             width={2172}
             height={724}
             priority
-            className="-mb-2 h-24 w-auto self-center sm:hidden"
+            className="-mb-2 h-24 w-auto origin-center scale-[1.35] self-center sm:hidden"
           />
 
           {/* A: badge + título */}
-          <RevealZoom index={0} className="flex max-w-3xl flex-col items-start">
-            <span className="mb-6 rounded-full border border-accent-2/50 px-4 py-1 text-sm font-medium text-accent-2">
+          <RevealZoom index={0} className="flex max-w-3xl flex-col items-center sm:items-start">
+            <span className="mb-6 hidden rounded-full border border-accent-2/50 px-4 py-1 text-sm font-medium text-accent-2 sm:inline-block">
               O primeiro cardápio digital em vídeo do Brasil.
             </span>
             <h1 className="max-w-none pb-1 text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl">
@@ -265,7 +265,7 @@ export default function Home() {
           </RevealZoom>
 
           {/* C: botões */}
-          <RevealZoom index={2} className="flex w-full flex-col items-start sm:w-auto">
+          <RevealZoom index={2} className="flex w-full flex-col items-center sm:w-auto sm:items-start">
             <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
               <a
                 href="#contato"
