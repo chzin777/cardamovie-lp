@@ -77,8 +77,22 @@ const comparison = [
 ];
 
 const menus = [
-  { name: "Valentina", tag: "Cantina italiana", city: "São Paulo, SP", dishes: 42, emoji: "🍝", href: "https://cardamovie.com/r/valentina" },
-  { name: "Trattoria Vivo", tag: "Cozinha italiana", city: "Goiânia, GO", dishes: 38, emoji: "🍕", href: "https://cardamovie.com/r/trattoria-vivo" },
+  {
+    name: "Valentina",
+    tag: "Cantina italiana",
+    dishes: 42,
+    emoji: "🍝",
+    logo: "https://storage.googleapis.com/prod-cardapio-web/uploads/company/logo/36810/2d985dadLOGO_VALENTINA_.jpeg",
+    href: "https://cardamovie.com/r/valentina",
+  },
+  {
+    name: "Trattoria Vivo",
+    tag: "Cozinha italiana",
+    dishes: 38,
+    emoji: "🍕",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_0cEb-dOOZnbIvLY6bYCti7y09jeTXV39PsigYmerM_CTT76jkA34mGI&s=10",
+    href: "https://cardamovie.com/r/trattoria-vivo",
+  },
 ];
 
 const faqs = [
@@ -253,10 +267,10 @@ export default function Home() {
             {/* glow atrás */}
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/30 blur-[90px]" />
             <Image
-              src="/images/chef.png"
+              src="/images/chef 2.png"
               alt="Chef CardaMovie"
-              width={1708}
-              height={1605}
+              width={1303}
+              height={1207}
               className="relative block w-[78%] max-w-sm lg:max-w-md"
             />
             {/* balão de fala */}
@@ -398,7 +412,16 @@ export default function Home() {
             >
               {/* preview com gradiente + ícone de play */}
               <div className="relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br from-accent/25 via-[#1c1c1c] to-accent-2/15">
-                <span className="text-6xl drop-shadow-lg transition-transform duration-300 group-hover:scale-110">{m.emoji}</span>
+                {m.logo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={m.logo}
+                    alt={`Logo ${m.name}`}
+                    className="h-24 w-24 rounded-full object-cover shadow-lg transition-transform duration-300 group-hover:scale-110"
+                  />
+                ) : (
+                  <span className="text-6xl drop-shadow-lg transition-transform duration-300 group-hover:scale-110">{m.emoji}</span>
+                )}
                 {/* badge AO VIVO */}
                 <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur">
                   <span className="relative flex h-2 w-2">
@@ -417,11 +440,7 @@ export default function Home() {
               <div className="flex items-center justify-between gap-3 p-5">
                 <div className="min-w-0">
                   <div className="truncate text-lg font-semibold">{m.name}</div>
-                  <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-sm text-white/50">
-                    <span>{m.tag}</span>
-                    <span className="text-white/25">•</span>
-                    <span>{m.city}</span>
-                  </div>
+                  <div className="mt-0.5 text-sm text-white/50">{m.tag}</div>
                   <div className="mt-1 text-xs font-medium text-accent-2">{m.dishes} pratos em vídeo</div>
                 </div>
                 <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity group-hover:opacity-90">
