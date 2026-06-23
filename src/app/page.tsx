@@ -307,7 +307,7 @@ export default function Home() {
               className="relative block w-[72%] max-w-xs scale-100 sm:w-[78%] sm:max-w-sm sm:scale-125 lg:max-w-md lg:scale-[1.3]"
             />
             {/* balão de fala */}
-            <div className="absolute left-[13px] top-[-8px] rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[37px] lg:left-[5px]">
+            <div className="absolute left-[13px] top-[-38px] rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[37px] lg:left-[5px]">
               Bora vender mais? 🔥
             </div>
           </div>
@@ -490,11 +490,6 @@ export default function Home() {
 
       {/* FAQ */}
       <section id="faq" className="relative border-t border-white/10">
-        {/* imagem translúcida: deixa o background animado aparecer atrás */}
-        <div
-          className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
-          style={{ backgroundImage: "url('/images/background%201.png')" }}
-        />
         <div className="relative z-[1] mx-auto w-full max-w-3xl px-6 py-20">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
