@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 
 const links = [
   { label: 'Recursos', href: '#recursos' },
-  { label: 'Como funciona', href: '#como-funciona' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Contato', href: '#contato' },
 ];

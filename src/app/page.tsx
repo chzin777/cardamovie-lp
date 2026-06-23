@@ -2,18 +2,10 @@ import Image from "next/image";
 import PlasmaBackground from "./PlasmaBackground";
 import HeroVideo from "./HeroVideo";
 import CardapioBanner from "./CardapioBanner";
-import ScrollFloat from "./ScrollFloat";
 import GlowCard from "./GlowCard";
 import TiltCard from "./TiltCard";
-import Stepper, { Step } from "./Stepper";
 import MobileNav from "./MobileNav";
 import FaqItem from "./FaqItem";
-
-const steps = [
-  { n: "01", title: "Cadastre o restaurante", text: "Crie a conta e adicione os dados do seu estabelecimento." },
-  { n: "02", title: "Monte o cardápio", text: "Suba pratos, preços e vídeos em minutos pelo painel." },
-  { n: "03", title: "Compartilhe o QR Code", text: "Coloque na mesa ou no balcão e comece a vender." },
-];
 
 const heroHighlights = [
   {
@@ -162,7 +154,6 @@ export default function Home() {
           {/* links desktop */}
           <div className="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
             <a href="#recursos" className="transition-colors hover:text-white">Recursos</a>
-            <a href="#como-funciona" className="transition-colors hover:text-white">Como funciona</a>
             <a href="#faq" className="transition-colors hover:text-white">FAQ</a>
             <a href="#contato" className="transition-colors hover:text-white">Contato</a>
           </div>
@@ -254,8 +245,58 @@ export default function Home() {
       {/* Banner cardápio */}
       <CardapioBanner />
 
+      {/* Chef mascote */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-2 lg:py-28">
+          {/* Mascote */}
+          <div className="relative order-1 flex justify-center lg:order-none">
+            {/* glow atrás */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/30 blur-[90px]" />
+            <Image
+              src="/images/chef.png"
+              alt="Chef CardaMovie"
+              width={1708}
+              height={1605}
+              className="animate-float relative w-[78%] max-w-sm drop-shadow-[0_25px_45px_rgba(0,0,0,0.6)] lg:max-w-md"
+            />
+            {/* balão de fala */}
+            <div className="absolute right-2 top-4 rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:right-8 lg:right-0">
+              Bora vender mais? 🔥
+            </div>
+          </div>
+
+          {/* Texto */}
+          <div className="flex flex-col items-start text-left">
+            <span className="mb-5 rounded-full border border-accent/40 px-4 py-1 text-sm font-medium text-accent">
+              Conheça nosso chef
+            </span>
+            <h2 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+              Pratos que <span className="text-accent">dão show</span> e fazem o cliente <span className="text-accent-2">pedir mais</span>
+            </h2>
+            <p className="mt-5 max-w-md text-base text-white/70">
+              Nosso chef cuida pra que cada prato apareça do jeito certo: vídeo apetitoso,
+              descrição na medida e aquele toque que abre o apetite antes do primeiro pedido.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#contato"
+                className="animate-pulse-cta rounded-full bg-accent px-8 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Quero esse show no meu cardápio
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Recursos */}
-      <section id="recursos" className="mx-auto w-full max-w-6xl px-6 py-20">
+      <section id="recursos" className="relative w-full px-6 py-20">
+        {/* imagem translúcida de fundo */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
+          style={{ backgroundImage: "url('/images/background%202.png')" }}
+        />
+        <div className="relative z-[1] mx-auto w-full max-w-6xl">
         <div className="mb-14 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Tudo que o restaurante precisa
@@ -284,31 +325,6 @@ export default function Home() {
             </TiltCard>
           ))}
         </div>
-      </section>
-
-      {/* Como funciona */}
-      <section id="como-funciona" className="border-y border-white/10 bg-white/[.02]">
-        <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <div className="text-center">
-            <ScrollFloat
-              containerClassName="!my-0"
-              textClassName="font-bold tracking-tight"
-              stagger={0.03}
-            >
-              Monte, publique, venda
-            </ScrollFloat>
-          </div>
-          <div className="mt-12 px-4 sm:px-0">
-            <Stepper autoAdvanceMs={4000}>
-              {steps.map((s) => (
-                <Step key={s.n}>
-                  <span className="font-heading text-5xl font-bold text-accent-2">{s.n}</span>
-                  <h3 className="mt-4 text-2xl font-semibold">{s.title}</h3>
-                  <p className="mt-3 text-white/60">{s.text}</p>
-                </Step>
-              ))}
-            </Stepper>
-          </div>
         </div>
       </section>
 

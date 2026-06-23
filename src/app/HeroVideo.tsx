@@ -60,7 +60,7 @@ export default function HeroVideo() {
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <video
         ref={videoRef}
-        className="pointer-events-none absolute right-[-6vw] top-1/2 h-full w-auto min-w-full -translate-y-1/2 object-cover"
+        className="pointer-events-none absolute right-[-6vw] top-1/2 h-full w-auto min-w-full -translate-y-1/2 scale-110 object-cover"
         src={SRC}
         autoPlay
         muted
