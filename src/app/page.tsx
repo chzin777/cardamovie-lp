@@ -150,7 +150,7 @@ export default function Home() {
 
       {/* Header */}
       <header className="absolute inset-x-0 top-0 z-20 bg-transparent">
-        <nav className="mr-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4 lg:pl-12">
+        <nav className="flex w-full items-center justify-between gap-4 px-6 py-4 lg:pl-12">
           {/* logo à esquerda */}
           <a href="#" className="shrink-0">
             <Image
@@ -163,16 +163,21 @@ export default function Home() {
             />
           </a>
 
-          <div className="flex items-center gap-8">
-            {/* links desktop */}
-            <div className="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
-              <a href="#recursos" className="transition-colors hover:text-white">Recursos</a>
-              <a href="#faq" className="transition-colors hover:text-white">FAQ</a>
-              <a href="#contato" className="transition-colors hover:text-white">Contato</a>
-            </div>
+          {/* links desktop (centro) */}
+          <div className="hidden items-center gap-6 text-sm font-medium text-white/70 lg:flex">
+            <a href="#chef" className="transition-colors hover:text-white">Chef</a>
+            <a href="#recursos" className="transition-colors hover:text-white">Recursos</a>
+            <a href="#comparativo" className="transition-colors hover:text-white">Comparativo</a>
+            <a href="#cardapios" className="transition-colors hover:text-white">Cardápios</a>
+            <a href="#faq" className="transition-colors hover:text-white">FAQ</a>
+            <a href="#contato" className="transition-colors hover:text-white">Contato</a>
+          </div>
+
+          {/* CTA + menu mobile (extremo direito) */}
+          <div className="flex items-center gap-3">
             <a
               href="#contato"
-              className="hidden shrink-0 rounded-full bg-accent px-5 py-2 text-sm text-white transition-opacity hover:opacity-90 md:inline-flex"
+              className="hidden shrink-0 rounded-full bg-accent px-5 py-2 text-sm text-white transition-opacity hover:opacity-90 lg:inline-flex"
             >
               Começar
             </a>
@@ -260,7 +265,7 @@ export default function Home() {
       <CardapioBanner />
 
       {/* Chef mascote */}
-      <section className="relative overflow-hidden">
+      <section id="chef" className="relative overflow-hidden">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-2 lg:py-28">
           {/* Mascote */}
           <div className="relative order-1 flex justify-center lg:order-none">
@@ -271,7 +276,7 @@ export default function Home() {
               alt="Chef CardaMovie"
               width={1303}
               height={1207}
-              className="relative block w-[78%] max-w-sm lg:max-w-md"
+              className="relative block w-[78%] max-w-sm scale-125 lg:max-w-md lg:scale-[1.3]"
             />
             {/* balão de fala */}
             <div className="absolute left-2 top-4 rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-8 lg:left-0">
@@ -349,7 +354,7 @@ export default function Home() {
       </section>
 
       {/* Comparativo */}
-      <section className="relative w-full px-6 py-20">
+      <section id="comparativo" className="relative w-full px-6 py-20">
         {/* imagem translúcida sobre o background animado */}
         <div
           className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
@@ -392,7 +397,7 @@ export default function Home() {
       </section>
 
       {/* Galeria de cardápios reais */}
-      <section className="mx-auto w-full max-w-6xl px-6 py-20">
+      <section id="cardapios" className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Cardápios no ar agora
@@ -487,14 +492,15 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mt-10 flex items-end justify-center">
-          {/* chef encostado no formulário */}
+        <div className="mt-10 flex justify-center">
+         <div className="relative w-full max-w-xl">
+          {/* chef encostado no formulário (fora do fluxo, não empurra o form) */}
           <Image
             src="/images/chef 3.png"
             alt="Chef CardaMovie"
             width={1122}
             height={1402}
-            className="-mr-6 hidden w-[230px] shrink-0 self-end lg:block xl:w-[270px]"
+            className="absolute bottom-0 right-full hidden w-[230px] translate-x-24 lg:block xl:w-[270px] xl:translate-x-28"
           />
         <form className="relative z-[1] w-full max-w-xl rounded-3xl border border-white/10 bg-white/[.03] p-6 shadow-xl backdrop-blur sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2">
@@ -576,6 +582,7 @@ export default function Home() {
             Sem compromisso. Seus dados ficam seguros e não são compartilhados.
           </p>
         </form>
+         </div>
         </div>
       </section>
 
@@ -587,7 +594,7 @@ export default function Home() {
             alt="CardaMovie"
             width={2172}
             height={724}
-            className="h-10 w-auto"
+            className="h-16 w-auto sm:h-20"
           />
           <span>© {new Date().getFullYear()} CardaMovie. Todos os direitos reservados.</span>
         </div>

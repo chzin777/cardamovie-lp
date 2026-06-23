@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 const links = [
+  { label: 'Chef', href: '#chef' },
   { label: 'Recursos', href: '#recursos' },
+  { label: 'Comparativo', href: '#comparativo' },
+  { label: 'Cardápios', href: '#cardapios' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Contato', href: '#contato' },
 ];
@@ -72,7 +75,7 @@ export default function MobileNav() {
   );
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         onClick={() => setOpen(true)}
         aria-label="Abrir menu"
