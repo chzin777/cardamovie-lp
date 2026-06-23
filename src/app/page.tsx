@@ -49,7 +49,9 @@ const IcFacebook = ({ size = 18, className = "" }: IcProps) => (
   <svg {...svgBase(size, className)}><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
 );
 const IcWhatsApp = ({ size = 18, className = "" }: IcProps) => (
-  <svg {...svgBase(size, className)}><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 20l1-5.5a8.5 8.5 0 0 1 16-3z" /></svg>
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M16.003 3.2c-7.06 0-12.79 5.73-12.79 12.79 0 2.254.59 4.457 1.71 6.4L3.2 28.8l6.57-1.713a12.74 12.74 0 0 0 6.23 1.587h.005c7.06 0 12.79-5.73 12.79-12.79 0-3.42-1.33-6.633-3.75-9.05a12.7 12.7 0 0 0-9.04-3.634zm0 23.32h-.004a10.6 10.6 0 0 1-5.4-1.48l-.387-.23-4.003 1.05 1.07-3.9-.252-.4a10.56 10.56 0 0 1-1.62-5.64c0-5.87 4.78-10.64 10.65-10.64 2.844 0 5.517 1.11 7.527 3.122a10.57 10.57 0 0 1 3.117 7.526c0 5.87-4.78 10.64-10.65 10.64zm5.84-7.97c-.32-.16-1.894-.935-2.188-1.04-.293-.108-.507-.16-.72.16-.214.32-.826 1.04-1.013 1.254-.187.213-.373.24-.693.08-.32-.16-1.35-.498-2.572-1.587-.95-.847-1.592-1.894-1.78-2.214-.186-.32-.02-.493.14-.652.144-.143.32-.373.48-.56.16-.187.213-.32.32-.533.107-.214.054-.4-.027-.56-.08-.16-.72-1.737-.987-2.378-.26-.624-.524-.54-.72-.55l-.613-.01c-.214 0-.56.08-.853.4-.293.32-1.12 1.094-1.12 2.67 0 1.574 1.147 3.096 1.307 3.31.16.213 2.255 3.443 5.464 4.828.764.33 1.36.527 1.824.674.766.244 1.464.21 2.015.127.615-.092 1.894-.774 2.16-1.522.267-.747.267-1.388.187-1.522-.08-.133-.293-.213-.613-.373z" />
+  </svg>
 );
 const IcPhone = ({ size = 16, className = "" }: IcProps) => (
   <svg {...svgBase(size, className)}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
@@ -305,7 +307,7 @@ export default function Home() {
               className="relative block w-[78%] max-w-sm scale-125 lg:max-w-md lg:scale-[1.3]"
             />
             {/* balão de fala */}
-            <div className="absolute left-[11px] top-[11px] rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[35px] lg:left-[3px]">
+            <div className="absolute left-[13px] top-[7px] rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[37px] lg:left-[5px]">
               Bora vender mais? 🔥
             </div>
           </div>
@@ -526,7 +528,7 @@ export default function Home() {
             alt="Chef CardaMovie"
             width={1122}
             height={1402}
-            className="absolute bottom-0 right-full hidden w-[255px] translate-x-[91px] lg:block xl:w-[295px] xl:translate-x-[107px]"
+            className="absolute bottom-0 right-full hidden w-[255px] translate-x-[94px] lg:block xl:w-[295px] xl:translate-x-[110px]"
           />
         <form className="relative z-[1] w-full max-w-xl rounded-3xl border border-white/10 bg-white/[.03] p-6 shadow-xl backdrop-blur sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2">
