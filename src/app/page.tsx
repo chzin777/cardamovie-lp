@@ -220,12 +220,12 @@ export default function Home() {
         <HeroVideo />
         {/* fade da esquerda (escuro) p/ legibilidade do texto */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#121212] from-20% via-[#121212]/85 via-55% to-transparent" />
-        {/* leve escurecedor geral */}
-        <div className="pointer-events-none absolute inset-0 bg-black/25" />
+        {/* leve escurecedor geral (mais forte no mobile p/ legibilidade) */}
+        <div className="pointer-events-none absolute inset-0 bg-black/45 sm:bg-black/25" />
         {/* fade escuro no topo (atrás do header) */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent" />
 
-        <div className="relative z-[1] mr-auto flex w-full max-w-6xl flex-col items-start gap-8 px-6 pb-24 pt-8 text-left sm:py-32 lg:pl-12">
+        <div className="relative z-[1] mr-auto flex w-full max-w-6xl flex-col items-start gap-8 px-6 pb-20 pt-28 text-left sm:py-32 lg:pl-12">
           {/* A: badge + título */}
           <div className="flex max-w-3xl flex-col items-start">
             <span className="mb-6 rounded-full border border-accent-2/50 px-4 py-1 text-sm font-medium text-accent-2">
@@ -237,9 +237,9 @@ export default function Home() {
           </div>
 
           {/* B: highlights (ícone + texto, lado a lado) */}
-          <div className="flex flex-wrap gap-x-10 gap-y-6">
+          <div className="grid w-full grid-cols-2 gap-x-4 gap-y-6 sm:w-auto lg:flex lg:flex-wrap lg:gap-x-10">
             {heroHighlights.map((h) => (
-              <div key={h.title} className="flex max-w-[160px] flex-col items-center gap-3 text-center">
+              <div key={h.title} className="flex flex-col items-center gap-3 text-center lg:max-w-[160px]">
                 <svg {...iconBase} className="h-8 w-8 text-accent">{h.path}</svg>
                 <span className="text-sm font-medium leading-tight text-white/90">{h.title}</span>
               </div>
@@ -247,11 +247,11 @@ export default function Home() {
           </div>
 
           {/* C: botões */}
-          <div className="flex flex-col items-start">
-            <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="flex w-full flex-col items-start sm:w-auto">
+            <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
               <a
                 href="#contato"
-                className="animate-pulse-cta rounded-full bg-accent px-8 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90"
+                className="animate-pulse-cta w-full rounded-full bg-accent px-8 py-3 text-center text-base font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
               >
                 Criar meu cardápio
               </a>
@@ -259,7 +259,7 @@ export default function Home() {
                 href="https://cardamovie.com/r/valentina"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white/20 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/5"
+                className="w-full rounded-full border border-white/20 px-8 py-3 text-center text-base font-semibold text-white transition-colors hover:bg-white/5 sm:w-auto"
               >
                 Ver cardápio de exemplo
               </a>
@@ -271,7 +271,7 @@ export default function Home() {
         <a
           href="#recursos"
           aria-label="Rolar para baixo"
-          className="absolute bottom-6 left-1/2 z-[1] flex -translate-x-1/2 flex-col items-center gap-2 text-white/60 transition-colors hover:text-white"
+          className="absolute bottom-6 left-1/2 z-[1] hidden -translate-x-1/2 flex-col items-center gap-2 text-white/60 transition-colors hover:text-white sm:flex"
         >
           <span className="text-xs font-medium tracking-wide">Role para baixo</span>
           <svg
@@ -304,10 +304,10 @@ export default function Home() {
               alt="Chef CardaMovie"
               width={1303}
               height={1207}
-              className="relative block w-[78%] max-w-sm scale-125 lg:max-w-md lg:scale-[1.3]"
+              className="relative block w-[72%] max-w-xs scale-100 sm:w-[78%] sm:max-w-sm sm:scale-125 lg:max-w-md lg:scale-[1.3]"
             />
             {/* balão de fala */}
-            <div className="absolute left-[13px] top-[7px] rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[37px] lg:left-[5px]">
+            <div className="absolute left-[13px] top-[-8px] rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[37px] lg:left-[5px]">
               Bora vender mais? 🔥
             </div>
           </div>
@@ -328,10 +328,10 @@ export default function Home() {
               vídeo apetitoso, fotos e descrições organizadas num cardápio que abre o
               apetite antes do primeiro pedido. Simples de montar e fácil de atualizar.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
               <a
                 href="#contato"
-                className="animate-pulse-cta rounded-full bg-accent px-8 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90"
+                className="animate-pulse-cta w-full rounded-full bg-accent px-8 py-3 text-center text-base font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
               >
                 Quero esse show no meu cardápio
               </a>
