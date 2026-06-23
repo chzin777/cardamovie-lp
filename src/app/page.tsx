@@ -137,32 +137,32 @@ export default function Home() {
       {/* Header */}
       <header className="absolute inset-x-0 top-0 z-20 bg-transparent">
         <nav className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-8">
             <MobileNav />
-            <a href="#" className="shrink-0">
-              <Image
-                src="/images/logo-principal.png"
-                alt="CardaMovie"
-                width={2172}
-                height={724}
-                priority
-                className="h-12 w-auto sm:h-16"
-              />
+            {/* links desktop */}
+            <div className="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
+              <a href="#recursos" className="transition-colors hover:text-white">Recursos</a>
+              <a href="#faq" className="transition-colors hover:text-white">FAQ</a>
+              <a href="#contato" className="transition-colors hover:text-white">Contato</a>
+            </div>
+            <a
+              href="#contato"
+              className="hidden shrink-0 rounded-full bg-accent px-5 py-2 text-sm text-white transition-opacity hover:opacity-90 md:inline-flex"
+            >
+              Começar
             </a>
           </div>
 
-          {/* links desktop */}
-          <div className="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
-            <a href="#recursos" className="transition-colors hover:text-white">Recursos</a>
-            <a href="#faq" className="transition-colors hover:text-white">FAQ</a>
-            <a href="#contato" className="transition-colors hover:text-white">Contato</a>
-          </div>
-
-          <a
-            href="#contato"
-            className="hidden shrink-0 rounded-full bg-accent px-5 py-2 text-sm text-white transition-opacity hover:opacity-90 md:inline-flex"
-          >
-            Começar
+          {/* logo à direita */}
+          <a href="#" className="ml-auto shrink-0">
+            <Image
+              src="/images/logo-principal.png"
+              alt="CardaMovie"
+              width={2172}
+              height={724}
+              priority
+              className="h-12 w-auto sm:h-16"
+            />
           </a>
         </nav>
       </header>
@@ -260,13 +260,16 @@ export default function Home() {
               className="relative block w-[78%] max-w-sm lg:max-w-md"
             />
             {/* balão de fala */}
-            <div className="absolute right-2 top-4 rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:right-8 lg:right-0">
+            <div className="absolute left-2 top-4 -rotate-3 rounded-2xl rounded-bl-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-8 lg:left-0">
               Bora vender mais? 🔥
             </div>
           </div>
 
+          {/* fade na base da section */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-28 bg-gradient-to-b from-transparent to-[#121212]" />
+
           {/* Texto */}
-          <div className="flex flex-col items-start self-center pb-20 text-left lg:pb-28">
+          <div className="flex flex-col items-start self-end pb-12 text-left lg:pb-24">
             <span className="mb-5 rounded-full border border-accent/40 px-4 py-1 text-sm font-medium text-accent">
               Conheça nosso chef
             </span>
@@ -295,8 +298,10 @@ export default function Home() {
         {/* imagem translúcida de fundo */}
         <div
           className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
-          style={{ backgroundImage: "url('/images/background%202.png')" }}
+          style={{ backgroundImage: "url('/images/background%201.png')" }}
         />
+        {/* fade na base p/ transição suave */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#121212]" />
         <div className="relative z-[1] mx-auto w-full max-w-6xl">
         <div className="mb-14 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -336,6 +341,8 @@ export default function Home() {
           className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
           style={{ backgroundImage: "url('/images/background%202.png')" }}
         />
+        {/* fade no topo p/ transição suave vinda da section anterior */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#121212] to-transparent" />
         <div className="relative z-[1] mx-auto w-full max-w-4xl">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -346,7 +353,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-white/10">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#121212]/40 backdrop-blur-md">
           <div className="grid grid-cols-[1.3fr_1fr_1fr] bg-white/[.03] text-xs font-semibold sm:text-sm">
             <div className="p-3 text-white/70 sm:p-4" />
             <div className="border-l border-white/10 p-3 text-center text-accent sm:p-4">CARDAMOVIE</div>
