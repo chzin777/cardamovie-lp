@@ -26,7 +26,7 @@ export default function GlowCard({ children, className = '' }: GlowCardProps) {
   if (!mounted || isMobile) {
     return (
       <div
-        className={`h-full rounded-[28px] border border-white/15 bg-[#171211] ${className}`.trim()}
+        className={`h-full rounded-[28px] border border-white/15 bg-background ${className}`.trim()}
       >
         {children}
       </div>
@@ -37,14 +37,14 @@ export default function GlowCard({ children, className = '' }: GlowCardProps) {
     <div className={className}>
       <BorderGlow
         edgeSensitivity={30}
-        glowColor="24 87 55"
-        backgroundColor="#171211"
+        glowColor="1 76 55"
+        backgroundColor="#121212"
         borderRadius={28}
         glowRadius={40}
         glowIntensity={1}
         coneSpread={25}
         animated={false}
-        colors={['#F07928', '#F07928', '#F07928']}
+        colors={['#E33935', '#E33935', '#FFC107']}
         className="h-full"
       >
         {children}

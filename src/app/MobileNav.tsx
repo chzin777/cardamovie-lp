@@ -29,13 +29,13 @@ export default function MobileNav() {
 
       {/* drawer (lateral esquerda) */}
       <aside
-        className={`fixed left-0 top-0 z-50 flex h-full w-72 max-w-[82%] flex-col border-r border-white/10 bg-[#171211] p-6 shadow-2xl transition-transform duration-300 ${
+        className={`fixed left-0 top-0 z-50 flex h-full w-72 max-w-[82%] flex-col border-r border-white/10 bg-background p-6 shadow-2xl transition-transform duration-300 ${
           open ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="mb-8 flex items-center justify-between">
-          <span className="text-lg tracking-tight">
-            Carda<span className="text-accent">&nbsp;Movie</span>
+          <span className="font-heading text-lg tracking-tight">
+            CARDA<span className="text-accent">MOVIE</span>
           </span>
           <button
             onClick={close}

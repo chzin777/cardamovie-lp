@@ -1,4 +1,7 @@
-import Grainient from "./Grainient";
+import Image from "next/image";
+import PlasmaBackground from "./PlasmaBackground";
+import HeroVideo from "./HeroVideo";
+import CardapioBanner from "./CardapioBanner";
 import ScrollFloat from "./ScrollFloat";
 import GlowCard from "./GlowCard";
 import TiltCard from "./TiltCard";
@@ -10,6 +13,25 @@ const steps = [
   { n: "01", title: "Cadastre o restaurante", text: "Crie a conta e adicione os dados do seu estabelecimento." },
   { n: "02", title: "Monte o cardápio", text: "Suba pratos, preços e vídeos em minutos pelo painel." },
   { n: "03", title: "Compartilhe o QR Code", text: "Coloque na mesa ou no balcão e comece a vender." },
+];
+
+const heroHighlights = [
+  {
+    title: "Vídeos que vendem",
+    path: <><rect x="2" y="4" width="14" height="16" rx="2" /><path d="M16 9l5-3v12l-5-3" /><path d="M7 9l4 3-4 3V9z" /></>,
+  },
+  {
+    title: "Experiência que encanta",
+    path: <path d="M12 2l2.4 5.6L20 9l-4.5 3.9L17 19l-5-3-5 3 1.5-6.1L4 9l5.6-1.4L12 2z" />,
+  },
+  {
+    title: "Resultados simples que crescem",
+    path: <><path d="M3 17l6-6 4 4 8-8" /><path d="M17 7h4v4" /></>,
+  },
+  {
+    title: "Simples para você, incrível para seu cliente",
+    path: <><circle cx="12" cy="12" r="9" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></>,
+  },
 ];
 
 const iconBase = {
@@ -90,47 +112,6 @@ const faqs = [
   },
 ];
 
-const PHONE_DEPTH = 22; // espessura em px (camadas Z)
-
-// Corpo do iphone: paredes laranja (extrusão) + tela escura na frente (z=0).
-function PhoneBody() {
-  return (
-    <>
-      {/* brilho atrás */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[110%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25 blur-3xl"
-        style={{ background: "#f07928", transform: "translateZ(-40px)" }}
-      />
-      {/* parede lateral laranja (extrusão em Z, atrás da tela) */}
-      {Array.from({ length: PHONE_DEPTH }).map((_, i) => (
-        <div
-          key={i}
-          className="absolute inset-0 rounded-[44px] bg-accent"
-          style={{ transform: `translateZ(-${i + 1}px)` }}
-        />
-      ))}
-      {/* tela (face frontal, z=0) com vídeo + borda laranja colada */}
-      <div className="absolute inset-0 overflow-hidden rounded-[44px] border-[3px] border-accent bg-[#1d1716] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.9)]">
-        <video
-          className="h-full w-full object-cover object-[center_65%]"
-          src="/videos/cardapio.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-        {/* notch */}
-        <div className="absolute left-1/2 top-2 z-[1] h-3.5 w-16 -translate-x-1/2 rounded-full bg-[#171211]" />
-      </div>
-      {/* botão lateral */}
-      <div
-        className="absolute left-0 top-[150px] h-11 w-[3px] rounded-full bg-accent/60"
-        style={{ transform: `translateZ(-${PHONE_DEPTH / 2}px)` }}
-      />
-    </>
-  );
-}
-
 // Célula do comparativo: bool vira ✓/✗, string vira texto.
 function Cell({ value, highlight = false }: { value: boolean | string; highlight?: boolean }) {
   if (typeof value === "string") {
@@ -149,65 +130,32 @@ function Cell({ value, highlight = false }: { value: boolean | string; highlight
   );
 }
 
-// iPhone 3D com vídeo + texto saindo da tela.
-function VideoPhone({ className = "" }: { className?: string }) {
-  return (
-    <div className={`[perspective:1000px] ${className}`.trim()}>
-      <div className="relative animate-float [transform-style:preserve-3d]">
-        <div
-          className="relative h-[490px] w-[240px] origin-left [transform-style:preserve-3d]"
-          style={{ transform: "rotateY(38deg) rotateX(6deg)" }}
-        >
-          {/* corpo: paredes laranja + tela com vídeo */}
-          <PhoneBody />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <div className="relative flex flex-1 flex-col overflow-x-hidden text-foreground">
-      {/* Background global (Grainient) */}
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <Grainient
-          color1="#171211"
-          color2="#171211"
-          color3="#F07928"
-          timeSpeed={0.25}
-          colorBalance={0}
-          warpStrength={1}
-          warpFrequency={5}
-          warpSpeed={2}
-          warpAmplitude={50}
-          blendAngle={0}
-          blendSoftness={0.05}
-          rotationAmount={500}
-          noiseScale={2}
-          grainAmount={0.1}
-          grainScale={2}
-          grainAnimated={false}
-          contrast={1.5}
-          gamma={1}
-          saturation={1}
-          centerX={0}
-          centerY={0}
-          zoom={0.9}
-        />
+      {/* Background global (Plasma) — bem sutil, só desktop */}
+      <div className="pointer-events-none fixed inset-0 -z-10 opacity-20">
+        <PlasmaBackground />
       </div>
       <div
         className="pointer-events-none fixed inset-0 -z-10"
-        style={{ background: "rgba(23,18,17,0.6)" }}
+        style={{ background: "rgba(18,18,18,0.7)" }}
       />
 
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-white/10 bg-background/80 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-white/10 bg-transparent backdrop-blur-sm">
         <nav className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <MobileNav />
-            <a href="#" className="shrink-0 text-lg tracking-tight sm:text-xl">
-              Carda<span className="text-accent">&nbsp;Movie</span>
+            <a href="#" className="shrink-0">
+              <Image
+                src="/images/logo-principal.png"
+                alt="CardaMovie"
+                width={2172}
+                height={724}
+                priority
+                className="h-12 w-auto sm:h-16"
+              />
             </a>
           </div>
 
@@ -229,31 +177,40 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="relative z-[1] mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-6 pb-24 pt-8 sm:py-32 lg:grid lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-8">
+      <section className="relative flex min-h-[88vh] items-center overflow-hidden">
+        {/* vídeo de fundo (cobre todo o hero) */}
+        <HeroVideo />
+        {/* fade da esquerda (escuro) p/ legibilidade do texto */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#121212] from-20% via-[#121212]/85 via-55% to-transparent" />
+        {/* leve escurecedor geral */}
+        <div className="pointer-events-none absolute inset-0 bg-black/25" />
+        {/* fade escuro no topo (atrás do header) */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent" />
+
+        <div className="relative z-[1] mr-auto flex w-full max-w-6xl flex-col items-start gap-8 px-6 pb-24 pt-8 text-left sm:py-32 lg:pl-12">
           {/* A: badge + título */}
-          <div className="flex flex-col items-center text-center lg:col-start-2 lg:row-start-1 lg:items-start lg:text-left">
-            <span className="mb-6 rounded-full border border-accent/40 px-4 py-1 text-sm font-medium text-accent">
-              Seu cardápio digital com vídeo!
+          <div className="flex max-w-3xl flex-col items-start">
+            <span className="mb-6 rounded-full border border-accent-2/50 px-4 py-1 text-sm font-medium text-accent-2">
+              O primeiro cardápio digital em vídeo do Brasil.
             </span>
             <h1 className="max-w-none pb-1 text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl">
-              Seu <span className="text-accent">cardápio</span> que dá água na boca antes do pedido
+              Vídeos que <span className="text-accent">abrem o apetite</span> e aumentam suas <span className="text-accent-2">vendas</span>
             </h1>
           </div>
 
-          {/* B: VideoPhone */}
-          <div className="relative flex items-center justify-center lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:justify-end lg:self-center">
-            <VideoPhone className="translate-x-6 scale-100 sm:translate-x-0 sm:scale-110 lg:scale-[1.3]" />
+          {/* B: highlights (ícone + texto, lado a lado) */}
+          <div className="flex flex-wrap gap-x-10 gap-y-6">
+            {heroHighlights.map((h) => (
+              <div key={h.title} className="flex max-w-[160px] flex-col items-center gap-3 text-center">
+                <svg {...iconBase} className="h-8 w-8 text-accent">{h.path}</svg>
+                <span className="text-sm font-medium leading-tight text-white/90">{h.title}</span>
+              </div>
+            ))}
           </div>
 
-          {/* C: parágrafo + botões */}
-          <div className="flex flex-col items-center text-center lg:col-start-2 lg:row-start-2 lg:items-start lg:text-left">
-            <p className="max-w-xl text-lg text-white/70">
-              Transforme seu cardápio em vídeo. Seus clientes assistem cada prato
-              ganhar vida, sentem o desejo na hora e pedem mais. Direto da mesa,
-              sem app e sem comissão.
-            </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          {/* C: botões */}
+          <div className="flex flex-col items-start">
+            <div className="flex flex-col gap-4 sm:flex-row">
               <a
                 href="#contato"
                 className="animate-pulse-cta rounded-full bg-accent px-8 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90"
@@ -287,12 +244,15 @@ export default function Home() {
             strokeWidth={2.5}
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ filter: "drop-shadow(0 0 8px rgba(240,121,40,0.9))" }}
+            style={{ filter: "drop-shadow(0 0 8px rgba(227,57,53,0.9))" }}
           >
             <path d="M6 9l6 6 6-6" />
           </svg>
         </a>
       </section>
+
+      {/* Banner cardápio */}
+      <CardapioBanner />
 
       {/* Recursos */}
       <section id="recursos" className="mx-auto w-full max-w-6xl px-6 py-20">
@@ -342,7 +302,7 @@ export default function Home() {
             <Stepper autoAdvanceMs={4000}>
               {steps.map((s) => (
                 <Step key={s.n}>
-                  <span className="text-5xl font-bold text-accent/40">{s.n}</span>
+                  <span className="font-heading text-5xl font-bold text-accent-2">{s.n}</span>
                   <h3 className="mt-4 text-2xl font-semibold">{s.title}</h3>
                   <p className="mt-3 text-white/60">{s.text}</p>
                 </Step>
@@ -362,7 +322,7 @@ export default function Home() {
         <div className="relative z-[1] mx-auto w-full max-w-4xl">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Carda Movie vs. cardápio impresso
+            CARDAMOVIE vs. cardápio impresso
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/60">
             Vídeo, atualização na hora e zero gráfica. Seu cardápio sempre certo.
@@ -372,7 +332,7 @@ export default function Home() {
         <div className="overflow-hidden rounded-2xl border border-white/10">
           <div className="grid grid-cols-[1.3fr_1fr_1fr] bg-white/[.03] text-xs font-semibold sm:text-sm">
             <div className="p-3 text-white/70 sm:p-4" />
-            <div className="border-l border-white/10 p-3 text-center text-accent sm:p-4">Carda Movie</div>
+            <div className="border-l border-white/10 p-3 text-center text-accent sm:p-4">CARDAMOVIE</div>
             <div className="border-l border-white/10 p-3 text-center text-white/60 sm:p-4">Impresso / PDF</div>
           </div>
           {comparison.map((row) => (
@@ -400,7 +360,7 @@ export default function Home() {
             Cardápios no ar agora
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/60">
-            Restaurantes que já vendem com a Carda Movie.
+            Restaurantes que já vendem com a CARDAMOVIE.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
@@ -479,8 +439,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-white/10">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-white/50 sm:flex-row">
-          <span className="text-white">
-            Carda<span className="text-accent">&nbsp;Movie</span>
+          <span className="font-heading text-white">
+            CARDA<span className="text-accent">MOVIE</span>
           </span>
           <span>© {new Date().getFullYear()} CardaMovie. Todos os direitos reservados.</span>
         </div>

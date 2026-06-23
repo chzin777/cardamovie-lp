@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# video fonte grande (usar hero-web.mp4)
+/public/videos/hero.mp4

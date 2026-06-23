@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Archivo_Black } from "next/font/google";
+import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 
-const archivoBlack = Archivo_Black({
-  variable: "--font-archivo-black",
-  weight: "400",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  weight: "800",
+  subsets: ["latin"],
+});
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ["400", "500"],
   subsets: ["latin"],
 });
 
@@ -22,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${archivoBlack.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
