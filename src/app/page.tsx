@@ -5,6 +5,14 @@ import CardapioBanner from "./CardapioBanner";
 import GlowCard from "./GlowCard";
 import TiltCard from "./TiltCard";
 import MobileNav from "./MobileNav";
+import ChefMascot from "./ChefMascot";
+import RevealCard from "./RevealCard";
+import RevealX from "./RevealX";
+import RevealZoom from "./RevealZoom";
+import RevealDesktop from "./RevealDesktop";
+import HeaderShell from "./HeaderShell";
+import BlurText from "./BlurText";
+import SplitText from "./SplitText";
 import FaqItem from "./FaqItem";
 
 const heroHighlights = [
@@ -177,7 +185,7 @@ export default function Home() {
       />
 
       {/* Header */}
-      <header className="absolute inset-x-0 top-0 z-20 bg-transparent">
+      <HeaderShell>
         <nav className="flex w-full items-center justify-between gap-4 px-6 py-4 lg:pl-12">
           {/* logo à esquerda */}
           <a href="#" className="shrink-0">
@@ -187,7 +195,7 @@ export default function Home() {
               width={2172}
               height={724}
               priority
-              className="h-12 w-auto sm:h-16"
+              className="h-11 w-auto sm:h-16"
             />
           </a>
 
@@ -205,14 +213,14 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <a
               href="#contato"
-              className="hidden shrink-0 rounded-full bg-accent px-5 py-2 text-sm text-white transition-opacity hover:opacity-90 lg:inline-flex"
+              className="inline-flex shrink-0 rounded-full bg-accent px-4 py-1.5 text-sm text-white transition-opacity hover:opacity-90 lg:px-5 lg:py-2"
             >
               Começar
             </a>
             <MobileNav />
           </div>
         </nav>
-      </header>
+      </HeaderShell>
 
       {/* Hero */}
       <section className="relative flex min-h-[88vh] items-center overflow-hidden">
@@ -226,28 +234,38 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent" />
 
         <div className="relative z-[1] mr-auto flex w-full max-w-6xl flex-col items-start gap-8 px-6 pb-20 pt-28 text-left sm:py-32 lg:pl-12">
+          {/* logo grande (somente mobile) */}
+          <Image
+            src="/images/logo-principal.png"
+            alt="CardaMovie"
+            width={2172}
+            height={724}
+            priority
+            className="-mb-2 h-24 w-auto self-center sm:hidden"
+          />
+
           {/* A: badge + título */}
-          <div className="flex max-w-3xl flex-col items-start">
+          <RevealZoom index={0} className="flex max-w-3xl flex-col items-start">
             <span className="mb-6 rounded-full border border-accent-2/50 px-4 py-1 text-sm font-medium text-accent-2">
               O primeiro cardápio digital em vídeo do Brasil.
             </span>
             <h1 className="max-w-none pb-1 text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl">
               Vídeos que <span className="text-accent">abrem o apetite</span> e aumentam suas <span className="text-accent-2">vendas</span>
             </h1>
-          </div>
+          </RevealZoom>
 
           {/* B: highlights (ícone + texto, lado a lado) */}
-          <div className="grid w-full grid-cols-2 gap-x-4 gap-y-6 sm:w-auto lg:flex lg:flex-wrap lg:gap-x-10">
+          <RevealZoom index={1} className="hidden w-full grid-cols-2 gap-x-4 gap-y-6 sm:grid sm:w-auto lg:flex lg:flex-wrap lg:gap-x-10">
             {heroHighlights.map((h) => (
               <div key={h.title} className="flex flex-col items-center gap-3 text-center lg:max-w-[160px]">
                 <svg {...iconBase} className="h-8 w-8 text-accent">{h.path}</svg>
                 <span className="text-sm font-medium leading-tight text-white/90">{h.title}</span>
               </div>
             ))}
-          </div>
+          </RevealZoom>
 
           {/* C: botões */}
-          <div className="flex w-full flex-col items-start sm:w-auto">
+          <RevealZoom index={2} className="flex w-full flex-col items-start sm:w-auto">
             <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
               <a
                 href="#contato"
@@ -264,14 +282,14 @@ export default function Home() {
                 Ver cardápio de exemplo
               </a>
             </div>
-          </div>
+          </RevealZoom>
         </div>
 
         {/* indicador de rolagem */}
         <a
           href="#recursos"
           aria-label="Rolar para baixo"
-          className="absolute bottom-6 left-1/2 z-[1] hidden -translate-x-1/2 flex-col items-center gap-2 text-white/60 transition-colors hover:text-white sm:flex"
+          className="absolute bottom-6 left-1/2 z-[1] flex -translate-x-1/2 flex-col items-center gap-2 text-white/60 transition-colors hover:text-white"
         >
           <span className="text-xs font-medium tracking-wide">Role para baixo</span>
           <svg
@@ -294,22 +312,15 @@ export default function Home() {
 
       {/* Chef mascote */}
       <section id="chef" className="relative overflow-hidden">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-2 lg:py-28">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-20 pb-10 lg:grid-cols-2 lg:py-28">
           {/* Mascote */}
-          <div className="relative order-1 flex justify-center lg:order-none">
-            {/* glow atrás */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/30 blur-[90px]" />
-            <Image
-              src="/images/chef 2.png"
-              alt="Chef CardaMovie"
-              width={1303}
-              height={1207}
-              className="relative block w-[72%] max-w-xs scale-100 sm:w-[78%] sm:max-w-sm sm:scale-125 lg:max-w-md lg:scale-[1.3]"
+          <div className="relative order-1 hidden justify-center lg:order-none lg:flex">
+            <ChefMascot
+              imgClassName="relative block w-[96%] max-w-md sm:w-[78%] sm:max-w-sm lg:max-w-md"
+              balloonClassName="absolute left-[13px] top-[-38px] rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[37px] lg:left-[5px]"
+              initial={{ opacity: 0, y: 40, scale: 1.25 }}
+              animate={{ opacity: 1, y: 0, scale: 1.3 }}
             />
-            {/* balão de fala */}
-            <div className="absolute left-[13px] top-[-38px] rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:left-[37px] lg:left-[5px]">
-              Bora vender mais? 🔥
-            </div>
           </div>
 
           {/* fade na base da section */}
@@ -323,12 +334,22 @@ export default function Home() {
             <h2 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
               Pratos que <span className="text-accent">dão show</span> e fazem o cliente <span className="text-accent-2">pedir mais</span>
             </h2>
-            <p className="mt-5 max-w-md text-base text-white/70">
+            <p className="mt-5 hidden max-w-md text-base text-white/70 sm:block">
               A CardaMovie te dá as ferramentas pra mostrar cada prato do jeito certo:
               vídeo apetitoso, fotos e descrições organizadas num cardápio que abre o
               apetite antes do primeiro pedido. Simples de montar e fácil de atualizar.
             </p>
-            <div className="mt-8 flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+            {/* chef + balão (somente mobile) */}
+            <div className="relative mt-[57px] flex w-full justify-center lg:hidden">
+              <ChefMascot
+                imgClassName="relative block w-[70%] max-w-[260px]"
+                balloonClassName="absolute left-[2%] top-[-52px] rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl"
+                initial={{ opacity: 0, x: 65, y: 41, scale: 1.5 }}
+                animate={{ opacity: 1, x: 65, y: 1, scale: 1.6 }}
+              />
+            </div>
+
+            <div className="relative z-[3] mt-16 flex w-full flex-col gap-4 sm:mt-8 sm:w-auto sm:flex-row">
               <a
                 href="#contato"
                 className="animate-pulse-cta w-full rounded-full bg-accent px-8 py-3 text-center text-base font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
@@ -341,7 +362,7 @@ export default function Home() {
       </section>
 
       {/* Recursos */}
-      <section id="recursos" className="relative w-full px-6 py-20">
+      <section id="recursos" className="relative w-full px-6 py-20 pb-10 sm:pb-20">
         {/* imagem translúcida de fundo */}
         <div
           className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
@@ -360,7 +381,8 @@ export default function Home() {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
-            <TiltCard key={f.title} className={i >= 4 ? "hidden sm:block" : undefined}>
+            <RevealCard key={f.title} index={i} className={i >= 4 ? "hidden sm:block" : undefined}>
+            <TiltCard>
               <GlowCard>
                 <div className="p-6">
                   {/* ícone como card à parte (mesmo efeito) */}
@@ -376,13 +398,14 @@ export default function Home() {
                 </div>
               </GlowCard>
             </TiltCard>
+            </RevealCard>
           ))}
         </div>
         </div>
       </section>
 
       {/* Comparativo */}
-      <section id="comparativo" className="relative w-full px-6 py-20">
+      <section id="comparativo" className="relative w-full px-6 py-20 pt-10 sm:pt-20">
         {/* imagem translúcida sobre o background animado */}
         <div
           className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
@@ -392,14 +415,24 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#121212] to-transparent" />
         <div className="relative z-[1] mx-auto w-full max-w-4xl">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            CARDAMOVIE vs. cardápio impresso
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-white/60">
-            Vídeo, atualização na hora e zero gráfica. Seu cardápio sempre certo.
-          </p>
+          <BlurText
+            as="h2"
+            text="CARDAMOVIE vs. cardápio impresso"
+            animateBy="words"
+            direction="top"
+            className="justify-center text-3xl font-bold tracking-tight sm:text-4xl"
+          />
+          <BlurText
+            as="p"
+            text="Vídeo, atualização na hora e zero gráfica. Seu cardápio sempre certo."
+            animateBy="words"
+            direction="top"
+            delay={70}
+            className="mx-auto mt-4 max-w-xl justify-center text-white/60"
+          />
         </div>
 
+        <RevealCard>
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#121212]/40 backdrop-blur-md">
           <div className="grid grid-cols-[1.3fr_1fr_1fr] bg-white/[.03] text-xs font-semibold sm:text-sm">
             <div className="p-3 text-white/70 sm:p-4" />
@@ -421,6 +454,7 @@ export default function Home() {
             </div>
           ))}
         </div>
+        </RevealCard>
         </div>
       </section>
 
@@ -492,13 +526,19 @@ export default function Home() {
       <section id="faq" className="relative border-t border-white/10">
         <div className="relative z-[1] mx-auto w-full max-w-3xl px-6 py-20">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Perguntas frequentes
-            </h2>
+            <BlurText
+              as="h2"
+              text="Perguntas frequentes"
+              animateBy="words"
+              direction="top"
+              className="justify-center text-3xl font-bold tracking-tight sm:text-4xl"
+            />
           </div>
           <div className="flex flex-col gap-3">
-            {faqs.map((f) => (
-              <FaqItem key={f.q} question={f.q} answer={f.a} />
+            {faqs.map((f, i) => (
+              <RevealX key={f.q} index={i} from={i % 2 === 0 ? "left" : "right"}>
+                <FaqItem question={f.q} answer={f.a} />
+              </RevealX>
             ))}
           </div>
         </div>
@@ -507,12 +547,32 @@ export default function Home() {
       {/* Contato / CTA */}
       <section id="contato" className="mx-auto w-full max-w-3xl px-6 py-24">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Pronto para digitalizar seu cardápio?
-          </h2>
+          <SplitText
+            tag="h2"
+            text="Pronto para digitalizar seu cardápio?"
+            className="text-3xl font-bold tracking-tight sm:text-4xl"
+            splitType="chars"
+            delay={30}
+            duration={0.8}
+            ease="power3.out"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            textAlign="center"
+          />
           <p className="mx-auto mt-4 max-w-lg text-white/70">
             Preencha os dados abaixo. Nossa equipe entra em contato e configura sua conta.
           </p>
+        </div>
+
+        {/* chef mobile acima do formulário */}
+        <div className="mt-8 flex justify-center lg:hidden">
+          <Image
+            src="/images/chef.png"
+            alt="Chef CardaMovie"
+            width={1122}
+            height={1402}
+            className="w-[180px] max-w-[60%] translate-y-[27px] scale-125"
+          />
         </div>
 
         <div className="mt-10 flex justify-center">
@@ -525,7 +585,8 @@ export default function Home() {
             height={1402}
             className="absolute bottom-0 right-full hidden w-[255px] translate-x-[94px] lg:block xl:w-[295px] xl:translate-x-[110px]"
           />
-        <form className="relative z-[1] w-full max-w-xl rounded-3xl border border-white/10 bg-white/[.03] p-6 shadow-xl backdrop-blur sm:p-8">
+        <RevealDesktop className="relative z-[1] w-full max-w-xl">
+        <form className="w-full rounded-3xl border border-white/10 bg-white/[.03] p-6 shadow-xl backdrop-blur sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="flex flex-col gap-1.5">
               <label htmlFor="nome" className="text-xs font-medium text-white/60">Seu nome *</label>
@@ -605,6 +666,7 @@ export default function Home() {
             Sem compromisso. Seus dados ficam seguros e não são compartilhados.
           </p>
         </form>
+        </RevealDesktop>
          </div>
         </div>
       </section>

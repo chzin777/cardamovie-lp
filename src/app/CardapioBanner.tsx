@@ -9,7 +9,7 @@ const steps = [
 
 export default function CardapioBanner() {
   return (
-    <section className="w-full border-y border-white/10 bg-gradient-to-r from-[#1a1a1a] via-[#181818] to-[#1a1a1a]">
+    <section className="hidden w-full border-y border-white/10 bg-gradient-to-r from-[#1a1a1a] via-[#181818] to-[#1a1a1a] md:block">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-6 py-10 md:flex-row md:gap-10 md:py-12">
         {/* Logo + headline */}
         <div className="flex shrink-0 items-center gap-4">
@@ -26,7 +26,7 @@ export default function CardapioBanner() {
         <div className="hidden h-16 w-px shrink-0 bg-white/15 md:block" />
 
         {/* Steps */}
-        <div className="flex flex-1 flex-wrap items-center justify-center gap-4 sm:gap-6">
+        <div className="grid w-full grid-cols-2 place-items-center gap-x-4 gap-y-6 sm:flex sm:flex-1 sm:flex-wrap sm:items-center sm:justify-center sm:gap-6">
           {steps.map(({ icon, label, accent }, i) => (
             <div key={label} className="flex items-center gap-4 sm:gap-6">
               <div className="group flex flex-col items-center gap-2.5">

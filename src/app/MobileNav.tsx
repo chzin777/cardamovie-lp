@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 
 const links = [
   { label: 'Chef', href: '#chef' },
@@ -29,16 +30,20 @@ export default function MobileNav() {
         }`}
       />
 
-      {/* drawer (lateral esquerda) */}
+      {/* drawer (lateral direita) */}
       <aside
-        className={`fixed left-0 top-0 z-50 flex h-full w-72 max-w-[82%] flex-col border-r border-white/10 bg-background p-6 shadow-2xl transition-transform duration-300 ${
-          open ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed right-0 top-0 z-50 flex h-full w-72 max-w-[82%] flex-col border-l border-white/10 bg-background p-6 shadow-2xl transition-transform duration-300 ${
+          open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="mb-8 flex items-center justify-between">
-          <span className="font-heading text-lg tracking-tight">
-            CARDA<span className="text-accent">MOVIE</span>
-          </span>
+          <Image
+            src="/images/logo-principal.png"
+            alt="CardaMovie"
+            width={2172}
+            height={724}
+            className="h-12 w-auto"
+          />
           <button
             onClick={close}
             aria-label="Fechar menu"
