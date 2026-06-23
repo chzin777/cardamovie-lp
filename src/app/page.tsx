@@ -77,8 +77,8 @@ const comparison = [
 ];
 
 const menus = [
-  { name: "Valentina", tag: "Cantina italiana", href: "https://cardamovie.com/r/valentina" },
-  { name: "Trattoria Vivo", tag: "Cozinha italiana", href: "https://cardamovie.com/r/trattoria-vivo" },
+  { name: "Valentina", tag: "Cantina italiana", city: "São Paulo, SP", dishes: 42, emoji: "🍝", href: "https://cardamovie.com/r/valentina" },
+  { name: "Trattoria Vivo", tag: "Cozinha italiana", city: "Goiânia, GO", dishes: 38, emoji: "🍕", href: "https://cardamovie.com/r/trattoria-vivo" },
 ];
 
 const faqs = [
@@ -135,7 +135,7 @@ export default function Home() {
       />
 
       {/* Header */}
-      <header className="sticky top-0 z-20 border-b border-white/10 bg-transparent backdrop-blur-sm">
+      <header className="absolute inset-x-0 top-0 z-20 bg-transparent">
         <nav className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <MobileNav />
@@ -247,9 +247,9 @@ export default function Home() {
 
       {/* Chef mascote */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-2 lg:py-28">
+        <div className="mx-auto grid w-full max-w-6xl items-end gap-10 px-6 pt-20 lg:grid-cols-2 lg:pt-28">
           {/* Mascote */}
-          <div className="relative order-1 flex justify-center lg:order-none">
+          <div className="relative order-1 flex justify-center self-end lg:order-none">
             {/* glow atrás */}
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/30 blur-[90px]" />
             <Image
@@ -257,7 +257,7 @@ export default function Home() {
               alt="Chef CardaMovie"
               width={1708}
               height={1605}
-              className="animate-float relative w-[78%] max-w-sm drop-shadow-[0_25px_45px_rgba(0,0,0,0.6)] lg:max-w-md"
+              className="relative block w-[78%] max-w-sm lg:max-w-md"
             />
             {/* balão de fala */}
             <div className="absolute right-2 top-4 rotate-3 rounded-2xl rounded-br-none border border-accent-2/40 bg-[#1c1c1c] px-4 py-2 text-sm font-bold text-accent-2 shadow-xl sm:right-8 lg:right-0">
@@ -266,7 +266,7 @@ export default function Home() {
           </div>
 
           {/* Texto */}
-          <div className="flex flex-col items-start text-left">
+          <div className="flex flex-col items-start self-center pb-20 text-left lg:pb-28">
             <span className="mb-5 rounded-full border border-accent/40 px-4 py-1 text-sm font-medium text-accent">
               Conheça nosso chef
             </span>
@@ -274,8 +274,9 @@ export default function Home() {
               Pratos que <span className="text-accent">dão show</span> e fazem o cliente <span className="text-accent-2">pedir mais</span>
             </h2>
             <p className="mt-5 max-w-md text-base text-white/70">
-              Nosso chef cuida pra que cada prato apareça do jeito certo: vídeo apetitoso,
-              descrição na medida e aquele toque que abre o apetite antes do primeiro pedido.
+              A CardaMovie te dá as ferramentas pra mostrar cada prato do jeito certo:
+              vídeo apetitoso, fotos e descrições organizadas num cardápio que abre o
+              apetite antes do primeiro pedido. Simples de montar e fácil de atualizar.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <a
@@ -386,18 +387,43 @@ export default function Home() {
               href={m.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[.03] p-6 transition-colors hover:border-accent/50"
+              className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[.03] transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_20px_50px_-20px_rgba(227,57,53,0.6)]"
             >
-              <div>
-                <div className="text-lg font-semibold">{m.name}</div>
-                <div className="text-sm text-white/50">{m.tag}</div>
+              {/* preview com gradiente + ícone de play */}
+              <div className="relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br from-accent/25 via-[#1c1c1c] to-accent-2/15">
+                <span className="text-6xl drop-shadow-lg transition-transform duration-300 group-hover:scale-110">{m.emoji}</span>
+                {/* badge AO VIVO */}
+                <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                  </span>
+                  AO VIVO
+                </span>
+                {/* botão play */}
+                <span className="absolute flex h-12 w-12 items-center justify-center rounded-full bg-white/15 opacity-0 backdrop-blur transition-opacity duration-300 group-hover:opacity-100">
+                  <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5 fill-white"><path d="M8 5v14l11-7z" /></svg>
+                </span>
               </div>
-              <span className="flex items-center gap-1 text-sm font-medium text-accent">
-                Ver cardápio
-                <svg {...iconBase} className="h-4 w-4 transition-transform group-hover:translate-x-1">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </span>
+
+              {/* corpo */}
+              <div className="flex items-center justify-between gap-3 p-5">
+                <div className="min-w-0">
+                  <div className="truncate text-lg font-semibold">{m.name}</div>
+                  <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-sm text-white/50">
+                    <span>{m.tag}</span>
+                    <span className="text-white/25">•</span>
+                    <span>{m.city}</span>
+                  </div>
+                  <div className="mt-1 text-xs font-medium text-accent-2">{m.dishes} pratos em vídeo</div>
+                </div>
+                <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity group-hover:opacity-90">
+                  Ver
+                  <svg {...iconBase} className="h-4 w-4 transition-transform group-hover:translate-x-0.5">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
+              </div>
             </a>
           ))}
         </div>
