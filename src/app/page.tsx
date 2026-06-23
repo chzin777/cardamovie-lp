@@ -500,7 +500,7 @@ export default function Home() {
             alt="Chef CardaMovie"
             width={1122}
             height={1402}
-            className="absolute bottom-0 right-full hidden w-[230px] translate-x-24 lg:block xl:w-[270px] xl:translate-x-28"
+            className="absolute bottom-0 right-full hidden w-[240px] translate-x-[91px] lg:block xl:w-[280px] xl:translate-x-[107px]"
           />
         <form className="relative z-[1] w-full max-w-xl rounded-3xl border border-white/10 bg-white/[.03] p-6 shadow-xl backdrop-blur sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2">
